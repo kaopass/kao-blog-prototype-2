@@ -1,4 +1,4 @@
-# KλoEngine Product
+# KλOE Product
 ## https://kaoblog.dev
 
 ## Free, no-nonsense, super-fast blogging
