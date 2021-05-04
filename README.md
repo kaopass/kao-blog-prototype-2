@@ -1,4 +1,4 @@
-# λ Kao
+# λy Kao
 ## https://kaoblog.dev
 
 ## Free, no-nonsense, super-fast blogging
