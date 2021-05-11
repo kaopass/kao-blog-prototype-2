@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load markdownify %}
+
+{% block favicon %}
+{{ blog.favicon }}
+{% endblock %}
+
+{% block title %}
+{{ post.title }} |
+{{ blog.title }}
+{% endblock %}
+
+{% block canonical %}
+{% if post.canonical_url %}
+<link rel="canonical" href="{{ post.canonical_url }}" />
+{% endif %}
+{% endblock %}
+
+{% block analytics %}
+{% if blog.fathom_site_id %}
+<script src="https://cdn.usefathom.com/script.js" data-site="{{ blog.fathom_site_id }}" defer></script>
+{% endif %}
+{% endblock %}
+
+{% block heading %}
+{{ blog.title }}
+{% endblock %}
+
+{% block seo %}
+{% if not blog.reviewed %}
+<meta name="robots" content="noindex">
+{% endif %}
+{% include 'snippets/seo_tags.html' with title=post.title url=root description=meta_description %}
+{% endblock %}
+
+{% block hitcount %}
+url("/hit/{{ post.pk }}")
+{% endblock %}
+
+{% block custom_styles %}
+    {% if blog.external_stylesheet %}
+        @import '{{ blog.external_stylesheet }}';
+    {% else %}
+        {% include 'styles/main.css' %}
+        {% include 'styles/dark_mode.css' %}
+    {% endif %}
+    {{ blog.custom_styles }}
+{% endblock %}
+
+{% block nav %}
+<a href="/">Home</a>
+{% for item in nav %}
+<a href="/{{ item.slug }}/">{{ item.title }}</a>
+{% endfor %}
+<a href="/blog/">Blog</a>
+{% endblock %}
+
+{% block content %}
+
+{% if not post.is_page %}
+<h1>
+    {{ post.title }}
+</h1>
+
+<p>
+    <i>
+        <time datetime="{{ post.published_date|date:'Y-m-d' }}" pubdate>
+            {{ post.published_date|date:'d M, Y' }}
+        </time>
+    </i>
+</p>
+{% endif %}
+
+<content>
+    {{ content | markdown | safe }}
+</content>
+{% if post.canonical_url %}
+<p>
+    <small>
+        <a href="{{ post.canonical_url }}">View original</a>
+    </small>
+</p>
+{% endif %}
+
+<p>
+{% for tag in post.tags.all %}
+    <a href="/blog/?q={{tag}}">#{{ tag }}</a>
+{% endfor %}
+</p>
+
+{% if post.show_in_feed %}
+<small>
+    <form action="" method="post" style="display: inline">
+        <input hidden name="pk" value="{{ post.pk }}" style="display:none"/>
+        {% csrf_token %}
+        {% if upvoted %}
+        <button disabled=true>▵ Toasted</button>
+        {% else %}
+        <button>▵ Toast this post</button>
+        {% endif %}
+    </form>
+    - <small>{{ post.upvote_count }} toasts</small>
+</small>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+Made with <a href="https://bearblog.dev">Bear ʕ•ᴥ•ʔ</a>
+{% endblock %}

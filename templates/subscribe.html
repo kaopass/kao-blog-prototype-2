@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load markdownify %}
+
+{% block favicon %}
+{{ blog.favicon }}
+{% endblock %}
+
+{% block title %}
+{{ post.title }} |
+{{ blog.title }}
+{% endblock %}
+
+{% block analytics %}
+{% if blog.fathom_site_id %}
+<script src="https://cdn.usefathom.com/script.js" data-site="{{ blog.fathom_site_id }}" defer></script>
+{% endif %}
+{% endblock %}
+
+{% block heading %}
+{{ blog.title }}
+{% endblock %}
+
+{% block custom_styles %}
+    {% if blog.external_stylesheet %}
+        @import '{{ blog.external_stylesheet }}';
+    {% else %}
+        {% include 'styles/main.css' %}
+        {% include 'styles/dark_mode.css' %}
+    {% endif %}
+    {{ blog.custom_styles }}
+{% endblock %}
+
+{% block nav %}
+<a href="/">Home</a>
+{% for item in nav %}
+<a href="/{{ item.slug }}/">{{ item.title }}</a>
+{% endfor %}
+<a href="/blog/">Blog</a>
+{% endblock %}
+
+{% block content %}
+
+{% if blog.upgraded and not subscribe_message %}
+<form action="" method="post" style="display: inline">
+    <p>
+        <b>Subscribe to this blog</b>
+    </p>
+    <input type="text" name="name" style="display:none"/>
+    <input type="email" placeholder="Email address..." name="email"/>
+    {% csrf_token %}
+    <input type="submit" value="Subscribe" />
+</form>
+{% endif %}
+
+{% if subscribe_message %}
+<p><i>{{ subscribe_message }}</i></p>
+{% endif %}
+
+{% endblock %}
+
+{% block footer %}
+Made with <a href="https://bearblog.dev">Bear ʕ•ᴥ•ʔ</a>
+{% endblock %}

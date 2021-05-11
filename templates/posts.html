@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+
+{% block favicon %}
+{{ blog.favicon }}
+{% endblock %}
+
+{% block title %}
+Blog |
+{{ blog.title }}
+{% endblock %}
+
+{% block analytics %}
+{% if blog.fathom_site_id %}
+<script src="https://cdn.usefathom.com/script.js" data-site="{{ blog.fathom_site_id }}" defer></script>
+{% endif %}
+{% endblock %}
+
+{% block heading %}
+{{ blog.title }}
+{% endblock %}
+
+{% block seo %}
+{% if not blog.reviewed %}
+<meta name="robots" content="noindex">
+{% endif %}
+{% include 'snippets/seo_tags.html' with title=blog.title url=root description=blog.content tags="blog, blogging, write, writing" %}
+<link rel="alternate" type="application/rss+xml" href="/feed/?type=rss" />
+{% endblock %}
+
+{% block custom_styles %}
+    {% if blog.external_stylesheet %}
+        @import '{{ blog.external_stylesheet }}';
+    {% else %}
+        {% include 'styles/main.css' %}
+        {% include 'styles/dark_mode.css' %}
+    {% endif %}
+    {{ blog.custom_styles }}
+{% endblock %}
+
+{% block nav %}
+<a href="/">Home</a>
+{% for item in nav %}
+<a href="/{{ item.slug }}/">{{ item.title }}</a>
+{% endfor %}
+<a href="/blog/">Blog</a>
+{% endblock %}
+
+{% block content %}
+<content>
+    {% if query %}
+    <h3 style="margin-bottom:0">Filtering for "{{ query }}"</h3>
+    <small>
+    <a href="/blog/">Remove filter</a>
+    </small>
+    {% endif %}
+    <ul class="blog-posts">
+        {% for post in posts %}
+        <li>
+            <span>
+                <i>
+                    <time datetime="{{ post.published_date|date:'Y-m-d' }}" pubdate>
+                        {{ post.published_date|date:'d M, Y' }}
+                    </time>
+                </i>
+            </span>
+            <a href="/{{ post.slug }}/">{{ post.title }}</a>
+        </li>
+        {% empty %}
+        <li>
+            No posts yet
+        </li>
+        {% endfor %}
+    </ul>
+    {% if not query %}
+    <small>
+        <div>
+            {% for tag in tags %}
+                <a href="/blog/?q={{ tag }}">#{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </small>
+    {% endif %}
+</content>
+
+{% endblock %}
+
+{% block footer %}
+Made with <a href="https://bearblog.dev">Bear ʕ•ᴥ•ʔ</a>
+{% endblock %}
