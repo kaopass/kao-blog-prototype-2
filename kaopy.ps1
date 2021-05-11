@@ -46,6 +46,7 @@ function RequirementsInstall {
 }
 
 do {
+    echo $1
     Show-Menu
     $selection = Read-Host "Please make a selection"
     switch ($selection) {
