@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_delete
-from django.dispatch import reciver
+from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
@@ -14,7 +14,10 @@ class Blog(models.Model):
     subdomain = models.SlugField(max_length=100, unique=True)
     domain = models.CharField(max_length=128, blank=True, null=True)
     content = models.TextField(blank=True)
-
+    external_stylesheet = models.CharField(max_length=255, blank=True)
+    custom_styles = models.TextField(blank=True)
+    favicon = models.CharField(max_length=4, default="📣")
+    
     def useful_domain(self):
         if self.domain:
             return f'http://{self.domain}'
