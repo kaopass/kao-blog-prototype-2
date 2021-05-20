@@ -45,6 +45,7 @@ def dashboard(request):
             return redirect(f"{blog.useful_domain()}/dashboard")
 
         if request.method == "POST":
+            # TODO: Implement create Blog
             pass
         else:
             form = BlogForm(instance=blog)
