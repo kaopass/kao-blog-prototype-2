@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allauth.account',
     'allauth.socialaccount',
+    'blogs.apps.BlogsConfig',
 ]
 SITE_ID = 1
 
