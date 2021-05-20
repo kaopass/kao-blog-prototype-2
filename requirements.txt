@@ -9,4 +9,7 @@ django-pg-utils==0.1.5
 django-queryset-csv==1.1.0
 django-six==1.0.4
 django-taggit==1.3.0
+django-dispatch==1.0.1
+tldextract==2.2.2
+
 
