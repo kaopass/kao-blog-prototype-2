@@ -11,6 +11,7 @@ function Show-Menu {
     Write-Host "4: Press '4' for Install Requirement."
     Write-Host "5: Press '5' for start Django server."
     Write-Host "6: Press '6' for migrate data."
+    Write-Host "7: Press '7' for make migration."
 
 
     Write-Host "Q: Press 'Q' to quit."
@@ -67,6 +68,9 @@ do {
         }
         '6' {
             py .\manage.py migrate 
+        }
+        '7' {
+            py .\manage.py makemigrations
         }
     }
     pause
