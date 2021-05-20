@@ -10,6 +10,8 @@ function Show-Menu {
     Write-Host "3: Press '3' for Activate Python Virlual Env."
     Write-Host "4: Press '4' for Install Requirement."
     Write-Host "5: Press '5' for start Django server."
+    Write-Host "6: Press '6' for migrate data."
+
 
     Write-Host "Q: Press 'Q' to quit."
 }
@@ -62,6 +64,9 @@ do {
         }
         '5' {
             py .\manage.py runserver 8080
+        }
+        '6' {
+            py .\manage.py migrate 
         }
     }
     pause
