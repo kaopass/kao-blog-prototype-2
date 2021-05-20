@@ -1,6 +1,25 @@
 from django import forms
 from .models import Blog
 
+
+class BlogForm(forms.ModelForm):
+    subdomain = forms.SlugField(
+        label="Subdomain",
+        help_text=".kaoblog.dev | <a href='domain/'>Add a custom domain</a>",
+    )
+
+    content = forms.CharField(
+        label="Homepage content (markdown)",
+        help_text="<a href='https://simplemde.com/markdown-guide' target='_blank'>Markdown cheatsheet</a>",
+        widget=forms.Textarea(attrs={'rows': 20, 'cols': 40}),
+        required=False,
+    )
+
+    class Meta:
+        model = Blog
+        fields = ('title', 'subdomain', 'content',)
+
+
 class StyleForm(forms.ModelForm):
     favicon = forms.CharField(
         max_length=4,
