@@ -52,8 +52,8 @@ pip install django-dark
 
 ## Current Result
 
-![Dark](https://github.com/contmp/django-dark/blob/master/demo/dark.png?raw=true)
-![Light](https://github.com/contmp/django-dark/blob/master/demo/light.png?raw=true)
+![Dark](https://github.com/trkhanh/django-dark/blob/master/demo/dark.png?raw=true)
+![Light](https://github.com/trkhanh/django-dark/blob/master/demo/light.png?raw=true)
 
 ## Developer Notes
 
