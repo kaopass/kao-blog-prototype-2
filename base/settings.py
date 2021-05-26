@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'blogs.apps.BlogsConfig',
+    'packages.django-dark'
 ]
 SITE_ID = 1
 
@@ -62,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'kaoblog.urls'
+ROOT_URLCONF = 'base.urls'
 
 TEMPLATES = [
     {
@@ -81,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'kaoblog.wsgi.application'
+WSGI_APPLICATION = 'base.wsgi.application'
 
 
 # Database
