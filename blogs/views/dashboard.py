@@ -1,4 +1,5 @@
 from django.db.models import Count
+from django.views.generic import DeleteView
 
 from blogs.views.blog import resolve_address
 from django.contrib.auth.decorators import login_required
@@ -27,7 +28,7 @@ def styles(request):
         return redirect(f"{blog.useful_domain()}/dashboard")
 
     if request.method == "POST":
-        form = StyleForm(request.POST,instance=blog)
+        form = StyleForm(request.POST, instance=blog)
         if form.is_valid():
             blog_info = form.save(commit=False)
             blog_info.save()
@@ -82,6 +83,7 @@ def posts_edit(request):
         'blog': blog
     })
 
+
 @login_required
 def post_new(request):
     blog = get_object_or_404(Blog, user=request.user)
@@ -105,7 +107,8 @@ def post_new(request):
     return render(request, 'dashboard/post_edit.html', {
         'form': form,
         'blog': blog
-        })
+    })
+
 
 @login_required
 def post_edit(request, pk):
@@ -122,7 +125,7 @@ def post_edit(request, pk):
             post_new.blog = blog
             # This prevents the resetting of time to 00:00 if same day edit
             if (published_date_old and
-                post_new.published_date and
+                    post_new.published_date and
                     published_date_old.date() == post_new.published_date.date()):
                 post_new.published_date = published_date_old
             if not post_new.published_date:
@@ -137,3 +140,8 @@ def post_edit(request, pk):
         'blog': blog,
         'post': post,
     })
+
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = '/dashboard/posts'

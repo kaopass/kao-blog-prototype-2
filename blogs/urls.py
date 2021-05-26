@@ -10,5 +10,6 @@ urlpatterns = [
     path('dashboard/posts/', dashboard.posts_edit, name='post'),
     path('dashboard/posts/new/', dashboard.post_new, name='post_new'),
     path('dashboard/posts/<pk>/', dashboard.post_edit, name='post_edit'),
-
+    path('dashboard/posts/<pk>/delete/', dashboard.PostDelete.as_view(),
+         name='post_delete'),
 ]
