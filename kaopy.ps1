@@ -45,6 +45,8 @@ function ActivatePythonEnv {
 }
 function RequirementsInstall {
     ActivatePythonEnv
+    pip list
+    pip freeze > requirements.txt
     pip install -r requirements.txt
 }
 
