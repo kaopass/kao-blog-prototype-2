@@ -56,6 +56,10 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True)
     publish = models.BooleanField(default=True)
     content = models.TextField()
+    show_in_feed = models.BooleanField(default=True)
+    is_page = models.BooleanField(default=False)
+    canonical_url = models.CharField(max_length=200, blank=True)
+
 
     def __str__(self):
         return self.title
