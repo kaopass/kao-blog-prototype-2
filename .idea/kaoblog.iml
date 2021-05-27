@@ -28,7 +28,6 @@
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/Lib/site-packages/django/forms/templates" />
         <option value="$MODULE_DIR$/templates" />
       </list>
     </option>
