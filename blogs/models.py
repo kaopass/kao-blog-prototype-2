@@ -17,7 +17,7 @@ class Blog(models.Model):
     external_stylesheet = models.CharField(max_length=255, blank=True)
     custom_styles = models.TextField(blank=True)
     favicon = models.CharField(max_length=4, default="📣")
-    
+
     def useful_domain(self):
         if self.domain:
             return f'http://{self.domain}'

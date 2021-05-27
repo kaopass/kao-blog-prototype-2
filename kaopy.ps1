@@ -1,10 +1,11 @@
-function Show-Menu {
+function Show-Menu
+{
     param (
         [string]$Title = 'Kaopy Boilerplate'
     )
     Clear-Host
     Write-Host "================ $Title ================"
-    
+
     Write-Host "1: Press '1' for Setup Python Virtual Env."
     Write-Host "2: Press '2' for Clear Python Virtual Env."
     Write-Host "3: Press '3' for Activate Python Virlual Env."
@@ -18,41 +19,54 @@ function Show-Menu {
 }
 
 
-function SetUpPythonEnv {
+function SetUpPythonEnv
+{
     python -m venv .
 }
 
-function ClearPythonEnv {
-    if ((Get-Item .\env).Exists) {
+function ClearPythonEnv
+{
+    if ((Get-Item .\env).Exists)
+    {
         Remove-Item -Path .\env -Force
     }
 }
-function ClearPythonEnvEachPath {
-    if ((Get-Item .\Lib).Exists) {
+function ClearPythonEnvEachPath
+{
+    if ((Get-Item .\Lib).Exists)
+    {
         Remove-Item -Path .\Lib  -Force
     }
-    if ((Get-Item .\Include).Exists) {
+    if ((Get-Item .\Include).Exists)
+    {
         Remove-Item -Path .\Include  -Force
     }
- 
-    if ((Get-Item .\Scripts).Exists) {
+
+    if ((Get-Item .\Scripts).Exists)
+    {
         Remove-Item -Path .\Scripts  -Force
     }
 }
 
-function ActivatePythonEnv {
+function ActivatePythonEnv
+{
     .\Scripts\Activate.ps1
 }
-function RequirementsInstall {
+
+function RequirementsInstall
+{
     ActivatePythonEnv
     pip install -r requirements.txt
+    pip list
 }
 
-do {
+do
+{
     echo $1
     Show-Menu
     $selection = Read-Host "Please make a selection"
-    switch ($selection) {
+    switch ($selection)
+    {
         '1' {
             SetUpPythonEnv
         } '2' {
@@ -67,7 +81,7 @@ do {
             py .\manage.py runserver 8080
         }
         '6' {
-            py .\manage.py migrate 
+            py .\manage.py migrate
         }
         '7' {
             py .\manage.py makemigrations
