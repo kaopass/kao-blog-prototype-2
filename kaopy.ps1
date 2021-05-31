@@ -13,6 +13,7 @@ function Show-Menu
     Write-Host "5: Press '5' for start Django server."
     Write-Host "6: Press '6' for migrate data."
     Write-Host "7: Press '7' for make migration."
+    Write-Host "8: Press '8' for Create super user."
 
 
     Write-Host "Q: Press 'Q' to quit."
@@ -85,6 +86,9 @@ do
         }
         '7' {
             py .\manage.py makemigrations
+        }
+        '8' {
+            py .\manage.py createsuperuser
         }
     }
     pause
