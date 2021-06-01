@@ -8,7 +8,7 @@ from blogs.helpers import root
 
 from django.urls import reverse
 
-from .models import Blog
+from .models import Blog, Post
 
 
 # Register your models here.
@@ -91,4 +91,18 @@ class BlogAdmin(admin.ModelAdmin):
     ordering = ('-created_date',)
 
 
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        return Post.objects.annotate(upvote_count=Count('upvote'))
+
+    def upvote_count(self, obj):
+        return obj.upvote_count
+
+    upvote_count.short_description = ('Upvotes')
+
+
+list_display = ('title', 'blog', 'upvote_count', 'published_date')
+search_fields = ('title', 'blog__title')
+ordering = ('-published_date',)
 
