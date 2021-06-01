@@ -13,6 +13,7 @@ class BlogForm(forms.ModelForm):
     subdomain = forms.SlugField(
         label="Subdomain",
         help_text=".kaoblog.dev | <a href='domain/'>Add a custom domain</a>",
+
     )
 
     content = forms.CharField(

@@ -48,8 +48,10 @@ def dashboard(request):
             return redirect(f"{blog.useful_domain()}/dashboard")
 
         if request.method == "POST":
-            # TODO: Implement create Blog
-            pass
+            form = BlogForm(request.POST, instance=blog)
+            if form.is_valid():
+                blog_info = form.save(commit=False)
+                blog_info.save()
         else:
             form = BlogForm(instance=blog)
     except Blog.DoesNotExist:
