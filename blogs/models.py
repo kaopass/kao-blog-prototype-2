@@ -18,6 +18,10 @@ class Blog(models.Model):
     custom_styles = models.TextField(blank=True)
     favicon = models.CharField(max_length=4, default="📣")
 
+    reviewed = models.BooleanField(default=False)
+    upgraded = models.BooleanField(default=False)
+    blocked = models.BooleanField(default=False)
+
     def useful_domain(self):
         if self.domain:
             return f'http://{self.domain}'
