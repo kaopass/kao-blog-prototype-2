@@ -77,3 +77,18 @@ class MultiInheritanceFood(BaseFood):
 
     def __str__(self):
         return self.name
+
+
+class Pet(models.Model):
+    name = models.CharField(max_length=50)
+
+    tags = TaggableManager()
+
+    def __str__(self):
+        return self.name
+
+
+class HousePet(Pet):
+    trained = models.BooleanField(default=False)
+
+# Test direct-tagging with custom through model
