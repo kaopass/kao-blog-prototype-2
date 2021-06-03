@@ -126,10 +126,10 @@ def get_func(key, default):
 
 
 def parse_tags(tagstring):
-    func = get_func("TAGGIT_TAGS_FROM_STRING", _parse_tags)
+    func = get_func("TAGS_FROM_STRING", _parse_tags)
     return func(tagstring)
 
 
 def edit_string_for_tags(tags):
-    func = get_func("TAGGIT_STRING_FROM_TAGS", _edit_string_for_tags)
+    func = get_func("TAGS_STRING_FROM_TAGS", _edit_string_for_tags)
     return func(tags)

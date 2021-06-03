@@ -17,13 +17,13 @@ from django.db.models.query_utils import PathInfo
 from django.utils.text import capfirst
 from django.utils.translation import gettext_lazy as _
 
-from taggit.forms import TagField
-from taggit.models import (
+from tags.forms import TagField
+from tags.models import (
     CommonGenericTaggedItemBase,
     GenericUUIDTaggedItemBase,
     TaggedItem,
 )
-from taggit.utils import require_instance_manager
+from tags.utils import require_instance_manager
 
 
 class ExtraJoinRestriction:
@@ -211,7 +211,7 @@ class _TaggableManager(models.Manager):
                     )
                 )
 
-        case_insensitive = getattr(settings, "TAGGIT_CASE_INSENSITIVE", False)
+        case_insensitive = getattr(settings, "TAGS_CASE_INSENSITIVE", False)
         manager = self.through.tag_model()._default_manager.using(db)
 
         if case_insensitive:
@@ -467,7 +467,7 @@ class TaggableManager(RelatedField):
         for kwarg in ("serialize", "null"):
             del kwargs[kwarg]
         # Add arguments related to relations.
-        # Ref: https://github.com/jazzband/django-taggit/issues/206#issuecomment-37578676
+        # Ref: https://github.com/trkhanh/django-tags/issues/206#issuecomment-37578676
         rel = self.remote_field
         if isinstance(rel.through, str):
             kwargs["through"] = rel.through

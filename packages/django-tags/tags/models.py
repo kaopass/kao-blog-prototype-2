@@ -74,16 +74,16 @@ class TagBase(models.Model):
 
 class Tag(TagBase):
     class Meta:
-        verbose_name = _("tag")
+        verbose_name = _("tags")
         verbose_name_plural = _("tags")
-        app_label = "taggit"
+        app_label = "tags"
 
 
 class ItemBase(models.Model):
     def __str__(self):
         return gettext("%(object)s tagged with %(tag)s") % {
             "object": self.content_object,
-            "tag": self.tag,
+            "tag": self.tags,
         }
 
     class Meta:
@@ -174,6 +174,6 @@ class TaggedItem(GenericTaggedItemBase, TaggedItemBase):
     class Meta:
         verbose_name = _("tagged item")
         verbose_name_plural = _("tagged items")
-        app_label = "taggit"
+        app_label = "tags"
         index_together = [["content_type", "object_id"]]
         unique_together = [["content_type", "object_id", "tag"]]

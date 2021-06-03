@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext as _
 
-from taggit.utils import edit_string_for_tags, parse_tags
+from tags.utils import edit_string_for_tags, parse_tags
 
 
 class TagWidgetMixin:
