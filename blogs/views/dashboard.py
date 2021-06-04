@@ -145,3 +145,7 @@ def post_edit(request, pk):
 class PostDelete(DeleteView):
     model = Post
     success_url = '/dashboard/posts'
+
+
+
+

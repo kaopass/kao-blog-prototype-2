@@ -12,4 +12,6 @@ urlpatterns = [
     path('dashboard/posts/<pk>/', dashboard.post_edit, name='post_edit'),
     path('dashboard/posts/<pk>/delete/', dashboard.PostDelete.as_view(),
          name='post_delete'),
+    path('<slug>/', blog.post, name='post'),
+
 ]
