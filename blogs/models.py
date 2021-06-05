@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
 from .helpers import delete_domain, add_new_domain
+from taggit.managers import TaggableManager
 
 
 class Blog(models.Model):
@@ -63,6 +64,7 @@ class Post(models.Model):
     show_in_feed = models.BooleanField(default=True)
     is_page = models.BooleanField(default=False)
     canonical_url = models.CharField(max_length=200, blank=True)
+    tags = TaggableManager(blank=True)
 
 
     def __str__(self):
