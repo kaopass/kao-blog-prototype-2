@@ -1,6 +1,16 @@
 from django.conf import settings
+from django.contrib.sites.models import Site
 import requests
 import json
+
+
+def root(subdomain=''):
+    domain = Site.object.get_current().domain
+    if subdomain == '':
+        return f"{domain}"
+    else:
+        return f"{subdomain}.{domain}"
+
 
 def get_nav(all_posts):
     return list(filter(lambda post: post.is_page, all_posts))
