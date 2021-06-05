@@ -7,7 +7,6 @@ defusedxml==0.7.1
 distlib==0.3.1
 Django==3.0.7
 django-allauth==0.41.0
-django-debug-toolbar==2.2
 django-dispatch==1.0.1
 django-ip==1.0.2
 django-pg-utils==0.1.5
@@ -38,3 +37,4 @@ tox==3.23.1
 unicodecsv==0.14.1
 urllib3==1.26.5
 virtualenv==20.4.7
+django-debug-toolbar==3.2.1
