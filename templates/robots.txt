@@ -1,0 +1,7 @@
+
+User-Agent: *
+Disallow: /accounts/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /subscribe/
+Disallow: /confirm-subscription/
