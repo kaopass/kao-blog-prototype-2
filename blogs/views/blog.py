@@ -25,23 +25,22 @@ def resolve_address(request):
 
 
 def home(request):
-    # blog = resolve_address(request)
-    # if not blog:
-    #     return render(request, 'landing.html')
+    blog = resolve_address(request)
+    if not blog:
+        return render(request, 'landing.html')
 
-    # all_posts = blog.post_set.filter(publish=True).order_by('-published_date')
+    all_posts = blog.post_set.filter(publish=True).order_by('-published_date')
 
     return render(
         request,
         'home.html',
-        # {
-        #     'blog': blog,
-        #     'content': blog.content,
-        #     'posts': get_posts(all_posts),
-        #     'nav': get_nav(all_posts),
-        #     'root': blog.useful_domain(),
-        # })
-    )
+        {
+            'blog': blog,
+            'content': blog.content,
+            'posts': get_posts(all_posts),
+            'nav': get_nav(all_posts),
+            'root': blog.useful_domain(),
+        })
 
 
 def not_found(request, *args, **kwargs):
