@@ -1,7 +1,6 @@
 
 from django.urls import path
-from .views import dashboard, blog
-
+from .views import dashboard, blog, emailer
 
 urlpatterns = [
     path('', blog.not_found, name='home'),
@@ -13,5 +12,7 @@ urlpatterns = [
     path('dashboard/posts/<pk>/delete/', dashboard.PostDelete.as_view(),
          name='post_delete'),
     path('<slug>/', blog.post, name='post'),
+    path('dashboard/subscribers/', emailer.subscribers, name='subscribers'),
+    path('dashboard/export_emails/', dashboard.export_emails, name='export_emails'),
 
 ]

@@ -1,5 +1,7 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Count
 from django.views.generic import DeleteView
+from djqscsv import djqscsv
 
 from blogs.views.blog import resolve_address
 from django.contrib.auth.decorators import login_required
@@ -146,6 +148,10 @@ class PostDelete(DeleteView):
     model = Post
     success_url = '/dashboard/posts'
 
+@staff_member_required
+def export_emails(request):
+    users = Blog.objects.filter(reviewed=True, blocked=False).values('user__email')
 
+    return djqscsv.render_to_csv_response(users)
 
 
