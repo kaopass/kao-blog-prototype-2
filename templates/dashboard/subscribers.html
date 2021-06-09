@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+{% include '../snippets/dashboard_nav.html' %}
+{% endblock %}
+
+{% block content %}
+{#{% if not blog.upgraded %}#}
+{#    {% include '../snippets/upgrade.html' %}#}
+{#{% else %}#}
+<content>
+    <h1>Email subscribers ({{ subscribers|length }})</h1>
+    <p>
+        <small>
+            Include the following snippet in your blog posts or on your home page:
+            <br>
+            <code>Subscribe to my blog via [email](/subscribe/) or [RSS feed](/feed/).</code>
+        </small>
+    <p>
+        <a href="#import-contacts">Import contacts</a> |
+        <a href="?export=True" download>Export list</a>
+    </p>
+    <ul>
+    {% for subscriber in subscribers %}
+        <li>
+            {{ subscriber.email_address }} -
+            <small>
+                <a href="?delete={{subscriber.pk}}">
+                    [delete]
+                </a>
+            </small>
+        </li>
+    {% empty %}
+        <li>No subscribers yet</li>
+    {% endfor %}
+    </ul>
+    <form method="POST" id="import-contacts">
+        {% csrf_token %}
+        <label for="email_addresses">
+            <b>Import contacts</b> - One email address per line
+        </label>
+        <textarea name="email_addresses" rows="10"></textarea>
+        <input type="submit" value="Add contacts" />
+    </form>
+</content>
+{#{% endif %}#}
+{% endblock %}

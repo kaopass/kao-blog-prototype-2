@@ -81,3 +81,9 @@ class Upvote(models.Model):
 
     def __str__(self):
         return f"{self.created_date.strftime('%d %b %Y, %X')} - {self.ip_address} - {self.post}"
+
+
+class Subscriber(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    email_address = models.EmailField()
+    subscribed_date = models.DateTimeField(auto_now_add=True)
