@@ -71,9 +71,9 @@ url("/hit/{{ post.pk }}")
 </p>
 {% endif %}
 
-{#<content>#}
-{#    {{ content | markdown | safe }}#}
-{#</content>#}
+<content>
+    {{ post.content }}
+</content>
 {% if post.canonical_url %}
 <p>
     <small>
