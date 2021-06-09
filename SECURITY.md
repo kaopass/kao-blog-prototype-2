@@ -794,7 +794,7 @@ compiles to:
 
 ## Authors
 
-- **Bruno Facca** - [LinkedIn](https://www.linkedin.com/in/brunofacca/) -
+- **Tran Khanh** - [LinkedIn](https://www.linkedin.com/in/trankhanh91/) -
 Email: bruno at facca  dot info
 
 ## Contributing

@@ -119,4 +119,5 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'canonical_url', 'published_date', 'content','is_page', 'publish', 'show_in_feed')
+        fields = ('title', 'slug', 'canonical_url', 'published_date', 'content', 'tags'
+                  , 'is_page', 'publish', 'show_in_feed')
